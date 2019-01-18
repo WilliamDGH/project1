@@ -1,0 +1,7 @@
+<% @routes.each do |r| %>
+<p>
+  <a href="<%= route_path(r.id) %>">
+    <%= r.start %> to <%= r.end %>
+  </a>
+</p>
+<% end %>

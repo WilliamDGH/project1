@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :check_for_login, :only => [:join, :cancel]
+
   def new
     @user = User.new
   end
@@ -11,6 +13,32 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @user = User.find params[:id]
+  end
+
+  def join
+    @route = Route.find params[:id]
+    @route.passengers.push(@current_user.id)
+    @route.decrement(:vacancy)
+    @route.save
+    user = User.find @current_user.id
+    user.joined_routes.push(@route.id)
+    user.save
+    redirect_to @route
+  end
+
+  def cancel
+    @route = Route.find params[:id]
+    @route.passengers.delete(@current_user.id.to_s)
+    @route.increment(:vacancy)
+    @route.save
+    user = User.find @current_user.id
+    user.joined_routes.delete(@route.id.to_s)
+    user.save
+    redirect_to @route
   end
 
   private

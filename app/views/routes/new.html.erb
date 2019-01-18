@@ -1,0 +1,14 @@
+<h1>Start a new route</h1>
+
+<%= form_for @route do |f| %>
+  <%= f.label :start %>
+  <%= f.text_field :start %>
+
+  <%= f.label :end %>
+  <%= f.text_field :end %>
+
+  <%= f.label :capacity %>
+  <%= f.text_field :capacity %>
+
+  <%= f.submit %>
+<% end %>
