@@ -16,4 +16,5 @@
 
 class Route < ApplicationRecord
   belongs_to :user, :optional => true
+  multisearchable :against => [:start, :end]
 end
