@@ -37,7 +37,11 @@
           <%= link_to "New route", new_route_path, :class=>'nav-link' %>
         <% end %>
       </li>
-
+      <li class="nav-item">
+        <% if @current_user.present? %>
+          <%= link_to "Log out", login_path, :method=>'delete', :class=>'nav-link' %>
+        <% end %>
+      </li>
 
     </ul>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
