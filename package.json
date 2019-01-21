@@ -1,5 +1,7 @@
 {
   "name": "project1",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "pikaday": "^1.8.0"
+  }
 }

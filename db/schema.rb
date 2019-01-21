@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_18_052704) do
+ActiveRecord::Schema.define(version: 2019_01_21_002710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "route_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "price"
+    t.integer "total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["route_id"], name: "index_bookings_on_route_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
@@ -44,4 +57,6 @@ ActiveRecord::Schema.define(version: 2019_01_18_052704) do
     t.text "joined_routes", default: [], array: true
   end
 
+  add_foreign_key "bookings", "routes"
+  add_foreign_key "bookings", "users"
 end

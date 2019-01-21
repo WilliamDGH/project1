@@ -1,0 +1,11 @@
+<%= form_for([@route, @route.bookings.new]) do |f| %>
+<%= f.text_field :start_date, :id=>"start_date", :placeholder=>"Select start date.." %>
+<%= f.text_field :end_date, :id=>"end_date", :placeholder=>"Select end date.."  %>
+
+<%= f.submit 'Book now' %>
+<% end %>
+
+<script>
+  let start_date = new Pikaday({ field: $('#start_date')[0] });
+  let end_date = new Pikaday({ field: $('#end_date')[0] });
+</script>
