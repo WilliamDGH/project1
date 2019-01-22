@@ -7,76 +7,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <nav class="navbar navbar-dark bg-dark">
-    <ul class="nav">
-      <li class="nav-item">
-        <%= link_to 'Home', root_path, :class=>'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Browse routes', routes_path, :class=>'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <% unless @current_user.present? %>
-        <%= link_to 'Sign up', new_user_path, :class=>'nav-link' %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <% unless @current_user.present? %>
-        <%= link_to 'Sign in', login_path, :class=>'nav-link' %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <% if @current_user.present? %>
-          <%= link_to "New route", new_route_path, :class=>'nav-link' %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <% if @current_user.present? %>
-          <%= link_to "Log out", login_path, :method=>'delete', :class=>'nav-link' %>
-        <% end %>
-      </li>
+    <%= render 'pages/navbar'%>
+    <%= render 'pages/notification' %>
+    <div class="container">
+      <%= yield %>
+    </div>
 
-    </ul>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <% if @current_user.present? %>
-          <%= link_to "Log out as: #{@current_user.email}", login_path, :method=>'delete', :class=>'nav-link' %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <% if @current_user.present? %>
-          <%= link_to "Joined trips", routes_joined_path, :class=>'nav-link' %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <% if @current_user.present? %>
-          <%= link_to "All my routes", routes_my_path, :class=>'nav-link' %>
-        <% end %>
-      </li>
-    </ul>
-    <span class="navbar-text">
-      Remember to DELETE this
-    </span>
-  </div>
-    </nav>
-
-
-    <%= form_tag search_path, :class=>"form-group" do %>
-      <%= text_field_tag :pg_search, "", :class=>"form-control" %>
-      <%= submit_tag("Search", :class=>"btn btn-success") %>
-    <% end %>
-
-    <%= yield %>
   </body>
 </html>

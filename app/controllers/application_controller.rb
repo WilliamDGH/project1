@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   private
   def fetch_user
-    @current_user = User.find_by :id => session[:user_id] if session[:user_id].present?
+    @current_user = User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token].present?
     session[:user_id] = nil unless @current_user.present?
   end
 

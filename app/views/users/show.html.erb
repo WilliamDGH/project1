@@ -1,7 +1,28 @@
-<h1>Other User Info</h1>
-
-<h2><%= @user.email %></h2>
-<p>Other</p>
-<p>Info</p>
-<p>Coming</p>
-<p>Soon</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="2"><h1 class="text-center"><%= @current_user.fullname %></h1></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Email</th>
+      <td><%= @current_user.email %></td>
+    </tr>
+    <tr>
+      <th scope="row">Name</th>
+      <td><%= @current_user.fullname %></td>
+    </tr>
+    <tr>
+      <th scope="row">placeholder</th>
+      <td>Larry</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div class=row>
+        <%= link_to 'Edit', edit_user_path, :class=>"btn btn-warning btn-block col-md-4 offset-md-4" %>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

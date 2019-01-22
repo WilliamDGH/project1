@@ -1,0 +1,19 @@
+
+<div class="row">
+  <div class="offset-md-4 col-md-4">
+    <h2 class="text-center">Reset password</h2>
+    <% if flash[:error_message].present? %>
+      <p><%= flash[:error_message] %></p>
+    <% end %>
+
+    <%= form_tag password_resets_path, :method=> 'post' do %>
+    <div class="form-group">
+      <%= email_field_tag :email, nil, :placeholder=>"Email", :class=>"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= submit_tag "Reset", :class=>"btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>

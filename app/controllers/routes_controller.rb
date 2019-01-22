@@ -35,7 +35,7 @@ class RoutesController < ApplicationController
   def update
     route = Route.find params[:id]
     route.update strong_params
-    redirect_to route 
+    redirect_to route
   end
 
   def joined
@@ -43,6 +43,12 @@ class RoutesController < ApplicationController
     @current_user.joined_routes.each do |r|
       @routes.push(Route.find r.to_s)
     end
+  end
+
+  def destroy
+    route = Route.find params[:id]
+    route.destroy
+    redirect_to routes_my_path
   end
 
 
