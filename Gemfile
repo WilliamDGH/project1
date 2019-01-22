@@ -39,6 +39,7 @@ gem 'pg_search'
 gem 'jquery-rails'
 gem 'bootstrap'
 gem 'toastr-rails', '~>1.0'
+gem 'cloudinary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

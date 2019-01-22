@@ -60,12 +60,12 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.default_url_options = { :host => 'localhost', :port=>3000 }
 
-  config.action_mailer.delivery_method = smtp
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.gamil.com',
-    port: 587,
-    enable_starttls_auto: 'plain',
-    user_name: 'guanhua.ding.work@gmail.com',
-    password: 'dgh,911116'
-  }
+  # config.action_mailer.delivery_method = smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gamil.com',
+  #   port: 587,
+  #   enable_starttls_auto: 'plain',
+  #   user_name: 'guanhua.ding.work@gmail.com',
+  #   password: 'dgh,911116'
+  # }
 end
