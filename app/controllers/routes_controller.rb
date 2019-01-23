@@ -64,6 +64,7 @@ class RoutesController < ApplicationController
     route = Route.find params[:id]
     start_date = Date.parse(params[:start_date])
     end_date = Date.parse(params[:end_date])
+    # raise 'Hell'
     output = {
       conflict: is_conflict(start_date, end_date, route)
     }

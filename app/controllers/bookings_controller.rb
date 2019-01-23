@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
       days = end_date - start_date + 1
       @booking = @current_user.bookings.build(bookings_params)
       @booking.route = route
+      @booking.creater_id = route.user_id
       # @booking.price = route.price
       # @booking.total = route.price * days
       @booking.save
