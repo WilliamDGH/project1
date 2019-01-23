@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'routes/joined' => 'routes#joined'
   get "routes/:id/join" => 'users#join', :as => :join_route
   get "routes/:id/cancel" => 'users#cancel', :as => :cancel_route
+  get 'routes/:id/preload' => 'routes#preload', :as => :preload_route
+  get 'routes/:id/preview' => 'routes#preview', :as => :preview_route
   resources :routes do
     resources :bookings
   end

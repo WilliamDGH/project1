@@ -51,10 +51,33 @@ class RoutesController < ApplicationController
     redirect_to routes_my_path
   end
 
+# ---for bookings
+  def preload
+    @route = Route.find params[:id]
+    today = Date.today
+    bookings = @route.bookings.where("start_date >= ? OR end_date >= ?", today, today)
 
+    render json: bookings
+  end
+
+  def preview
+    route = Route.find params[:id]
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+    output = {
+      conflict: is_conflict(start_date, end_date, route)
+    }
+
+    render json: output
+  end
 
   private
   def strong_params
     params.require(:route).permit(:start, :end, :capacity)
+  end
+
+  def is_conflict(start_date, end_date, route)
+    check = route.bookings.where("? < start_date AND end_date < ?", start_date, end_date)
+    check.size > 0? true : false
   end
 end

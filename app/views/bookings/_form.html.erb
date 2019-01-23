@@ -1,11 +1,79 @@
 <%= form_for([@route, @route.bookings.new]) do |f| %>
-<%= f.text_field :start_date, :id=>"start_date", :placeholder=>"Select start date.." %>
-<%= f.text_field :end_date, :id=>"end_date", :placeholder=>"Select end date.."  %>
+<%= f.text_field :start_date, :id=>"booking_start_date", :placeholder=>"Select start date.." %>
+<%= f.text_field :end_date, :id=>"booking_end_date", :placeholder=>"Select end date..", :disabled=>true  %>
 
-<%= f.submit 'Book now' %>
+<%= f.submit 'Book now', :disabled=>true, :id=>"btn_book" %>
+<span id="message"></span>
 <% end %>
 
 <script>
-  let start_date = new Pikaday({ field: $('#start_date')[0] });
-  let end_date = new Pikaday({ field: $('#end_date')[0] });
+  const checkDate = function(date) {
+    dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+    return [$.inArray(dmy, unavailableDates) == -1]
+  }
+
+  $(function () {
+    unavailableDates = [];
+    $.ajax({
+      url: '<%= preload_route_path(@route) %>',
+      dateType: 'json',
+      success: function(data) {
+        $.each(data, function(arrID, arrValue) {
+          for(let d = new Date(arrValue.start_date); d<= new Date(arrValue.end_date); d.setDate(d.getDate() + 1)) {
+            unavailableDates.push($.datepicker.formatDate('d-m-yy', d));
+          }
+        });
+
+        $(function() {
+          $('#booking_start_date').datepicker({
+            dateFormat: 'dd-mm-yy',
+            minDate: 0,
+            maxDate: '3m',
+            beforeShowDay: checkDate,
+            onSelect: function(selected) {
+              $('#booking_end_date').datepicker("option", "minDate", selected);
+              $("#booking_end_date").attr("disabled", false);
+            }
+          });
+
+          $('#booking_end_date').datepicker({
+            dateFormat: 'dd-mm-yy',
+            minDate: 0,
+            maxDate: '3m',
+            beforeShowDay: checkDate,
+            onSelect: function(selected) {
+              $('#booking_start_date').datepicker("option", "maxDate", selected);
+
+              let start_date = $("#booking_start_date").datepicker("getDate");
+              let end_date = $("#booking_end_date").datepicker("getDate");
+              let input = {
+                'start_date': start_date,
+                'end_date': end_date
+              }
+
+              $.ajax({
+                url: '<%= preview_route_path(@route) %>',
+                data: input,
+                success: function(date) {
+                  if(data.conflict) {
+                    $('#message').text("These dates are not available.");
+                    $('#preview').hide();
+                    $('#btn_book').attr("disabled", true);
+                  } else {
+                    $('#message').text();
+                    $('#preview').show();
+                    $('#btn_book').attr("disabled", false);
+                  }
+                }
+              });
+            }
+          });
+        });
+
+      }
+    })
+  });
+
+
+
 </script>

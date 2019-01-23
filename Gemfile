@@ -37,6 +37,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pg_search'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'bootstrap'
 gem 'toastr-rails', '~>1.0'
 gem 'cloudinary'
