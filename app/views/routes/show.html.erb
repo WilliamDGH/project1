@@ -1,40 +1,114 @@
-<h1><%= @route.start %> -- <%= @route.end %></h1>
 
-<p><strong>Driver: </strong><%= @route.user.email %></p>
-<p><strong>From: </strong><%= @route.start %></p>
-<p><strong>Destination: </strong><%= @route.end %></p>
-<p><strong>Passenger No.: </strong><%= @route.capacity %></p>
-<p><strong>Vacancy: </strong><%= @route.capacity - @route.passengers.length %></p>
-<p><strong>Passengers: </strong>
-  <% @route.passengers.each do |p| %>
-  <% user = User.find p %>
-  <%= link_to user.email, user_path(user.id) %>
-  <% end %>
-</p>
+<div class="masthead">
+  <div class="border-container">
 
-<div class="controls">
-  <% if (@current_user.present? && @current_user.id != @route.user.id && @route.capacity - @route.passengers.length > 0 && @route.passengers.index(@current_user.id.to_s) == nil ) %>
-    <%= link_to 'Join', join_route_path %>
-  <% end %>
+<table class="table user-info">
+  <thead>
+    <tr>
+      <th colspan="2"><h2 class="text-center mx-auto"><%= @route.start %> - <%= @route.end %></h2></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Driver:</th>
+      <td><%= @route.user.fullname %></td>
+    </tr>
+    <tr>
+      <th scope="row">Email:</th>
+      <td><%= @route.user.email %></td>
+    </tr>
+    <tr>
+      <th scope="row">From: </th>
+      <td><%= @route.start %></td>
+    </tr>
+    <tr>
+      <th scope="row">Destination: </th>
+      <td><%= @route.end %></td>
+    </tr>
+    <tr>
+      <th scope="row">Vacancy: </th>
+      <td><%= @route.capacity %></td>
+    </tr>
+    <tr>
+      <th scope="row">Price: </th>
+      <td>$ <%= @route.price %></td>
+    </tr>
+    <% if (@current_user.present? && @current_user.id == @route.user.id) %>
+    <tr>
+      <td><%= link_to 'Edit', edit_route_path, :class=>'btn btn-primary btn-block mx-auto col-6' %></td>
+      <td><%= link_to 'Delete', route_path, :method=>'delete', :class=>'btn btn-primary btn-block mx-auto col-6' %></td>
+    </tr>
+    <% end %>
 
-  <% if (@current_user.present? && @current_user.id != @route.user.id && @route.passengers.index(@current_user.id.to_s) != nil ) %>
-    <%= link_to 'Cancel trip', cancel_route_path %>
-  <% end %>
-
-  <% if (@current_user.present? && @current_user.id == @route.user.id) %>
-  <%= link_to 'Edit', edit_route_path %>
-  <%= link_to 'Delete', route_path, :method=>'delete' %>
-  <% end %>
-
-  <% unless @current_user.present? %>
-  <%= link_to 'Sign in to ride', new_user_path %>
-  <% end %>
-
+    <% unless @current_user.present? %>
+    <tr>
+      <td colspan="2"><%= link_to 'Sign in to ride', new_user_path %></td>
+    </tr>
+    <% end %>
+      <% if (@current_user.present? && @current_user.id != @route.user.id) %>
+          <%= render 'bookings/form' %>
+      <% end %>
+  </tbody>
+</table>
 
 </div>
-
-<div>
-
-  <%= render 'bookings/form' %>
-
+<div id="embed-map">
+<iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAys8z47PrHg6ebR1Vw4CE6rGSowTzkqN4&origin=<%= @route.start %>&destination=<%= @route.end %>" width="40%" height="40%" frameborder="0" style="border:0" allowfullscreen></iframe>
 </div>
+</div>
+
+
+<style>
+  body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    justify-items: center;
+    padding-bottom: 40px;
+    background: black;
+  }
+
+
+
+    table.user-info {
+      width: 100%;
+      height: 100%;
+    }
+
+    .user-info tbody {
+
+      border-radius: 0.5em;
+    }
+    .user-info thead th {
+      border: none;
+    }
+
+    .user-info thead th h2 {
+      font-size: 2em;
+      color: black;
+    }
+    .border-container {
+      width: 50%;
+      max-width: 960px;
+      min-width: 380px;
+      margin: 15vh auto 0 auto;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 0.5em;
+    }
+
+    #embed-map {
+      border-radius: 0.5em;
+      display:block;
+      width: 40%;
+      height: 40%;
+      margin: auto;
+      border: 10px solid white;
+    }
+
+    #embed-map iframe {
+      width: 100%;
+      height: 100%;
+      display:block;
+      margin: auto;
+    }
+</style>

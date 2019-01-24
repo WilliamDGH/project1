@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post '/search' => 'pages#search'
 
   # Users routes...
-  resources :users, :only => [:new, :create, :show, :edit]
+  resources :users, :only => [:new, :create, :show, :edit, :update]
   get '/bookings' => 'users#bookings', :as => :bookings
 
   # Session routes...

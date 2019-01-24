@@ -1,12 +1,28 @@
 <%= form_for([@route, @route.bookings.new]) do |f| %>
-<%= f.text_field :start_date, :id=>"booking_start_date", :placeholder=>"Select start date.." %>
-<%= f.text_field :end_date, :id=>"booking_end_date", :placeholder=>"Select end date..", :disabled=>true  %>
-
-<%= f.submit 'Book now', :disabled=>true, :id=>"btn_book" %>
-
+<tr>
+  <td>
+<%= f.text_field :start_date, :id=>"booking_start_date", :placeholder=>"Select start date..", :class=>'form-control d-block mx-auto col-6' %>
+  </td>
+  <td>
+<%= f.text_field :end_date, :id=>"booking_end_date", :placeholder=>"Select end date..", :disabled=>true, :class=>'form-control d-block mx-auto col-6'  %>
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+<%= f.submit 'Book now', :disabled=>true, :id=>"btn_book", :class=>'btn btn-primary btn-block mx-auto col-6' %>
+  </td>
+  </tr>
 <% end %>
-<span id="message"></span>
+  <tr>
+    <td colspan="2">
+<span id="message" class="mx-auto d-block"></span>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
 <span id="price"></span>
+    </td>
+  </tr>
 
 <script>
   const checkDate = function(date) {

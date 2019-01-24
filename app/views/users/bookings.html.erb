@@ -1,5 +1,41 @@
-<h1>My bookings</h1>
 
-<% @bookings.each do |b| %>
-<p><%= b.route.start %> to <%= b.route.end %></p>
-<% end %>
+
+
+
+<div class="masthead">
+  <div class="container routes-container">
+    <div class="row">
+      <% @bookings.each do |b| %>
+
+      <div class="col-md-4 mb-3 route-tile">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <h4 class="text-uppercase m-0"><a href="<%= route_path(b.route_id) %>"><%= b.route.start %> - <%= b.route.end %></a></h4>
+            <hr class="my-4">
+            <div class="small text-black-50">Created by: <%= User.find(b.creater_id).fullname %></div>
+            <div class="small text-black-50">Total price: $<%= b.price %></div>
+            <div class="small text-black-50"><%= b.start_date.to_s[0..9] %> to <%= b.end_date.to_s[0..9] %></div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
+  </div>
+
+
+
+<style>
+  body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    justify-items: center;
+    padding-bottom: 40px;
+    background: black;
+  }
+  .routes-container {
+    margin-top: 10vh;
+  }
+
+
+</style>

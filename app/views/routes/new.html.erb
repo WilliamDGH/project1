@@ -6,12 +6,12 @@
 
         <div class="form-group col-md-6 offset-md-3">
           <%= f.label :start %>
-          <%= f.text_field :start, :class=>"form-control" %>
+          <%= f.text_field :start, :class=>"form-control google-complete", :id=>"search-start" %>
         </div>
 
         <div class="form-group col-md-6 offset-md-3">
         <%= f.label :end %>
-        <%= f.text_field :end, :class=>"form-control" %>
+        <%= f.text_field :end, :class=>"form-control google-complete", :id=>"search-end" %>
         </div>
 
         <div class="form-group  col-md-6 offset-md-3">
@@ -53,3 +53,14 @@
     }
   }
 </style>
+
+<script>
+  $(".google-complete").focus(function() {
+    $(this).toggleClass("google-search");
+  });
+  function activatePlacesSearch() {
+    let input = document.querySelector('.google-search');
+    let autocomplete = new google.maps.places.Autocomplete(input);
+  }
+</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAys8z47PrHg6ebR1Vw4CE6rGSowTzkqN4&libraries=places&callback=activatePlacesSearch"></script>
