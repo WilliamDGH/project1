@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_23_013403) do
+ActiveRecord::Schema.define(version: 2019_01_23_232340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_01_23_013403) do
     t.integer "user_id"
     t.integer "vacancy"
     t.text "passengers", default: [], array: true
+    t.integer "price"
   end
 
   create_table "users", force: :cascade do |t|

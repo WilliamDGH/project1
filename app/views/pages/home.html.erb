@@ -1,3 +1,49 @@
-<h1>Carpool</h1>
-<%= render 'pages/search' %>
-<p>Home page ...</p>
+<header class="masthead">
+  <div class="container d-flex h-100 align-items-center">
+    <div class="mx-auto text-center">
+      <h1 class="mx-auto my-0 text-uppercase">Commute your way</h1>
+      <%= render 'pages/search' %>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="about-section text-center">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="text-white mb-4">Save time and the planet</h2>
+        <p class="text-white-50">Something something something something something something something something something something.
+          <%= link_to 'Sign up today', new_user_path %>. Something something something something something something something something.</p>
+      </div>
+    </div>
+    <img src="img/ipad.png" class="img-fluid" alt="">
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section bg-black">
+  <div class="container">
+
+    <div class="social d-flex justify-content-center">
+      <a href="https://twitter.com/DGH_William" class="mx-2">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/guanhua-ding/" class="mx-2">
+        <i class="fab fa-linkedin"></i>
+
+      </a>
+      <a href="https://github.com/WilliamDGH" class="mx-2">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black small text-center text-white-50">
+  <div class="container">
+    Copyright &copy; Guanhua Ding 2019
+  </div>
+</footer>

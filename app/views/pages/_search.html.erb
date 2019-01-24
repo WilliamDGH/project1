@@ -1,4 +1,13 @@
-<%= form_tag search_path, :class=>"form-group" do %>
-  <%= text_field_tag :pg_search, "", :class=>"form-control" %>
-  <%= submit_tag("Search", :class=>"btn btn-success") %>
-<% end %>
+<div class="row">
+  <div class="col-md-10 col-lg-8 mx-auto text-center">
+
+    <i class="fas fa-car-side text-white-50 fa-2x mt-2 mb-2"></i>
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">Search for your next commute now:</h2>
+
+    <%= form_tag search_path, :class=>"form-inline d-flex", :id=>"home_search" do %>
+    <%= text_field_tag :pg_search, "", :class=>"form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0", :placeholder=> "search start or destination.." %>
+
+    <%= submit_tag "Search", :class=>"btn btn-primary mx-auto", :id=>'search_btn' %>
+    <% end %>
+  </div>
+</div>
