@@ -1,9 +1,40 @@
-<h1>All my routes</h1>
 
-<% @routes.each do |r| %>
-<p>
-  <a href="<%= route_path(r.id) %>">
-    From <%= r.start %> to <%= r.end %>
-  </a>
-</p>
-<% end %>
+<div class="masthead">
+  <div class="container routes-container">
+    <div class="row">
+      <% @routes.each do |r| %>
+
+      <div class="col-md-4 mb-3 route-tile">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <h4 class="text-uppercase m-0"><a href="<%= route_path(r.id) %>"><%= r.start %> - <%= r.end %></a></h4>
+            <hr class="my-4">
+            <div class="small text-black-50">Created by: <%= r.user.fullname %></div>
+            <a href="<%= route_path(r.id) %>">
+              <div class="small text-black-50 btn btn-sm btn-primary">View</div>
+              </a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
+  </div>
+
+
+
+<style>
+  body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: black;
+  }
+  .routes-container {
+    margin-top: 10%;
+  }
+
+
+</style>

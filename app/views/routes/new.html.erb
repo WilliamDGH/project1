@@ -1,21 +1,55 @@
-
 <div class="masthead">
   <div class="container d-flex h-100 align-items-center">
-    <div class="mx-auto text-center">
-<h1>Start a new route</h1>
+    <div class="mx-auto text-center" id="form-container">
+      <h2 class="display-2 mx-auto">Start a new route</h2>
+      <%= form_for @route do |f| %>
 
-<%= form_for @route do |f| %>
-  <%= f.label :start %>
-  <%= f.text_field :start %>
+        <div class="form-group col-md-6 offset-md-3">
+          <%= f.label :start %>
+          <%= f.text_field :start, :class=>"form-control" %>
+        </div>
 
-  <%= f.label :end %>
-  <%= f.text_field :end %>
+        <div class="form-group col-md-6 offset-md-3">
+        <%= f.label :end %>
+        <%= f.text_field :end, :class=>"form-control" %>
+        </div>
 
-  <%= f.label :capacity %>
-  <%= f.text_field :capacity %>
+        <div class="form-group  col-md-6 offset-md-3">
+        <%= f.label :capacity %>
+        <%= f.text_field :capacity, :class=>"form-control" %>
+        </div>
 
-  <%= f.submit %>
-<% end %>
+        <div class="form-group  col-md-6 offset-md-3">
+        <%= f.label :price %>
+        <%= f.text_field :price, :class=>"form-control", :placeholder=>'$0.00' %>
+        </div>
+
+        <div class="form-group  col-md-6 offset-md-3">
+        <%= f.submit "Submit", :class=>"btn btn-lg btn-primary btn-block" %>
+        </div>
+      <% end %>
 </div>
 </div>
 </div>
+
+
+<style>
+  #form-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 70%;
+    height: 50%;
+    border-radius: 0.5em;
+  }
+
+  #form-container h2 {
+    margin-top: 50px;
+    font-size: 2.5em;
+  }
+
+
+  @media (max-width: 768px) {
+    #form-container h2 {
+      font-size: 1.5em;
+    }
+  }
+</style>

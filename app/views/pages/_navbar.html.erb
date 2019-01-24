@@ -31,7 +31,7 @@
             <%= link_to "All my routes", routes_my_path, :class=>'nav-link js-scroll-trigger' %>
           </li>
           <li class="nav-item">
-            <%= link_to "My bookings", bookings_path, :class=>'nav-link js-scroll-trigger' %>
+            <%= link_to "All routes", routes_path, :class=>'nav-link js-scroll-trigger' %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,6 +40,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to "My Profile", @current_user, :class=>'dropdown-item' %>
+              <%= link_to "My bookings", bookings_path, :class=>'dropdown-item' %>
               <%= link_to "Log out: #{@current_user.email}", login_path, :method=>'delete', :class=>'dropdown-item' %>
             </div>
           </li>

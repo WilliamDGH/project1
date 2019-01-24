@@ -6,6 +6,7 @@
 
 <% end %>
 <span id="message"></span>
+<span id="price"></span>
 
 <script>
   const checkDate = function(date) {
@@ -45,11 +46,12 @@
             onSelect: function(selected) {
               $('#booking_start_date').datepicker("option", "maxDate", selected);
 
-              let start_date = $("#booking_start_date").val();
-              let end_date = $("#booking_end_date").val();
+              let start_date = $("#booking_start_date").datepicker('getDate');
+              let end_date = $("#booking_end_date").datepicker('getDate');
+              let days = (end_date - start_date)/1000/60/60/24 + 1;
               let input = {
                 'start_date': start_date,
-                'end_date': end_date
+                'end_date': end_date,
               }
               console.log(start_date);
               console.log(end_date);
@@ -60,10 +62,13 @@
                 success: function(data) {
                   if(data.conflict) {
                     $('#message').text("These dates are not available.");
+                    $('#price').text("");
                     $('#preview').hide();
                     $('#btn_book').attr("disabled", true);
                   } else {
-                    $('#message').text();
+                    $('#message').text("");
+                    let total = <%= @route.price %> * days;
+                    $('#price').text("Total price: " + total);
                     $('#preview').show();
                     $('#btn_book').attr("disabled", false);
                   }
