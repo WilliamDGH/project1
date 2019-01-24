@@ -1,24 +1,86 @@
-# README
+# [Project1 - Carpool](https://github.com/WilliamDGH/project1)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Heroku App](https://project1-carpool.herokuapp.com/)
 
-Things you may want to cover:
+## DESCRIPTION
 
-* Ruby version
+This is my second project for WDI-30 at General Assembly Sydney. It is a website where you can post your commute routes, and other users can join your trip. It solves the problem where public transport is too slow, and driving by yourself is too expansive.
 
-* System dependencies
+## TECH USED
 
-* Configuration
+There are the tech/languages I have used in this project:
 
-* Database creation
+* Ruby
 
-* Database initialization
+* Rails
 
-* How to run the test suite
+* JavaScript
 
-* Services (job queues, cache servers, search engines, etc.)
+* Bootstrap CSS
 
-* Deployment instructions
+* SASS
 
-* ...
+* PostgreSQL
+
+* jQuery
+
+* Ajax
+
+* Heroku
+
+## RESOURCES/GEM USED
+
+* Google Maps API
+
+* Start Bootstrap Themes
+
+* Start Bootstrap Themes
+
+* pg_search
+
+* toastr-rails
+
+## USER MODEL
+
+Users can signup with email, sign in to the website with their account, post routes, join routes.
+
+Features coming:
+
+* Upload Photos
+
+* Signin with Google account
+
+* Email confirmation
+
+* Reset Password
+
+## ROUTE MODEL
+
+Routes has start point and end point, and can be booked by users other than the creator.
+
+Features coming:
+
+* Can be booked on the same date up to the capacity limit.
+
+* Has more detailed show page.
+
+## BOOKING MODEL
+
+Bookings belong to route. It can be created by users who select dates and book.
+
+Features coming:
+
+* Show other users info who booked the same route same dates.
+
+* Different status: pending, confirmed, complete.
+
+* Edit
+
+## OTHER FUTURE FEATURES
+
+
+* Checkout/payment
+
+* Messages between users
+
+* Rating system
