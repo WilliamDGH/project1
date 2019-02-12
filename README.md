@@ -28,6 +28,9 @@ There are the tech/languages I have used in this project:
 
 * Heroku
 
+* Devise
+
+
 ## RESOURCES/GEM USED
 
 * Google Maps API
